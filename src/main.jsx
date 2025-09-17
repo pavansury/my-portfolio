@@ -1,9 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
 import App from './App';
 import './index.css';
+import { unregister } from './utils/serviceWorker';
 
 // Error Boundary Component
 class ErrorBoundary extends React.Component {
@@ -45,31 +44,26 @@ class ErrorBoundary extends React.Component {
 }
 
 // Main render function
-const root = ReactDOM.createRoot(document.getElementById('root'));
-
-root.render(
-  <React.StrictMode>
-    <ErrorBoundary>
-      <BrowserRouter
-        future={{
-          v7_startTransition: true,
-          v7_relativeSplatPath: true
-        }}
-      >
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </BrowserRouter>
-    </ErrorBoundary>
-  </React.StrictMode>
+const app = (
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
 );
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(app);
 
 // Log environment info for debugging
 console.log('App started with environment:', {
-  nodeEnv: process.env.NODE_ENV,
+  nodeEnv: import.meta.env.MODE,
   baseUrl: import.meta.env.BASE_URL,
   mode: import.meta.env.MODE,
   dev: import.meta.env.DEV,
   prod: import.meta.env.PROD,
   ssr: import.meta.env.SSR,
 });
+
+// Unregister service workers in development
+if (import.meta.env.DEV) {
+  unregister();
+}

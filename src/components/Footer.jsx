@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+// Link removed - using anchor tags for navigation
 import { motion } from 'framer-motion';
 import { FiGithub, FiMail, FiInstagram, FiLinkedin, FiSend, FiCheck, FiAlertCircle } from 'react-icons/fi';
 import emailjs from '@emailjs/browser';
@@ -83,11 +83,10 @@ const Footer = () => {
   ];
 
   const navLinks = [
-    { name: 'Home', path: '/', icon: null },
-    { name: 'About', path: '/about', icon: null },
-    { name: 'Projects', path: '/projects', icon: null },
-    { name: 'Services', path: '/services', icon: null },
-    { name: 'Contact', path: '/contact', icon: null },
+    { name: 'Home', path: '#home', icon: null },
+    { name: 'About', path: '#about', icon: null },
+    { name: 'Projects', path: '#projects', icon: null },
+    { name: 'Contact', path: '#contact', icon: null },
   ];
 
   const footerLinks = [
@@ -95,7 +94,8 @@ const Footer = () => {
       title: 'Quick Links', 
       links: navLinks.map(link => ({
         name: link.name,
-        to: link.path
+        to: link.path,
+        isExternal: false
       }))
     }
   ];
@@ -134,17 +134,17 @@ const Footer = () => {
 
           {/* Middle Column - Quick Links */}
           <div className="md:col-span-3">
-            <h3 className="text-white font-medium mb-4">Quick Links</h3>
+            <h3 className="text-white text-lg font-semibold mb-4">Quick Links</h3>
             <hr className="border-gray-700 mb-4" />
-            <ul className="grid grid-cols-2 gap-2">
+            <ul className="space-y-3">
               {navLinks.map((link, index) => (
-                <li key={index} className="mb-2">
-                  <a
+                <li key={index} className="group">
+                  <a 
                     href={link.path}
-                    className="text-gray-400 hover:text-white text-sm transition-colors duration-200 flex items-center"
+                    className="flex items-center text-gray-400 hover:text-white transition-colors duration-200"
                   >
-                    <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
-                    {link.name}
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span className="text-sm font-medium">{link.name}</span>
                   </a>
                 </li>
               ))}

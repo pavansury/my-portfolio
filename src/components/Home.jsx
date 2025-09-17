@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+// Link removed - using anchor tags for smooth scrolling
 import { FiArrowRight, FiCode, FiLayers, FiSmartphone, FiChevronDown } from 'react-icons/fi';
 
 const Home = () => {
+  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -24,21 +25,22 @@ const Home = () => {
     },
   };
 
+  // Features data
   const features = [
     {
-      icon: <FiCode className="w-8 h-8" />,
+      icon: <FiCode className="w-6 h-6 md:w-8 md:h-8" />,
       title: 'Web Development',
-      description: 'I build responsive, user-friendly websites using HTML, CSS, JavaScript, React, and TailwindCSS. I also integrate backend functionality using Node.js, Express, and MongoDB.',
+      description: 'I build responsive, user-friendly websites using modern web technologies like React, Next.js, and TailwindCSS with a focus on performance and accessibility.',
     },
     {
-      icon: <FiLayers className="w-8 h-8" />,
-      title: 'AI & Machine Learning',
-      description: 'As a Computer Engineering (AIML) student, I work on ML models, Python automation, and data analysis. I\'m learning TensorFlow, Scikit-learn, and more.',
+      icon: <FiLayers className="w-6 h-6 md:w-8 md:h-8" />,
+      title: 'UI/UX Design',
+      description: 'I create beautiful, intuitive user interfaces with a focus on user experience and accessibility using modern design tools and best practices.',
     },
     {
-      icon: <FiSmartphone className="w-8 h-8" />,
-      title: 'IoT & Smart Systems',
-      description: 'I build smart systems like crowd-monitoring projects using Arduino and sensors, combining my software and hardware knowledge.',
+      icon: <FiSmartphone className="w-6 h-6 md:w-8 md:h-8" />,
+      title: 'Mobile First',
+      description: 'I build with a mobile-first approach, ensuring optimal performance and user experience across all device sizes and screen resolutions.',
     },
   ];
 
